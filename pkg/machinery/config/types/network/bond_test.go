@@ -38,6 +38,7 @@ func TestBondConfigMarshalStability(t *testing.T) {
 	cfg.BondPacketsPerSlave = pointer.To(uint32(1))
 	cfg.BondADActorSysPrio = pointer.To(uint16(65535))
 	cfg.LinkUp = pointer.To(true)
+	cfg.BondFailOverMAC = pointer.To(nethelpers.FailOverMACFollow)
 	cfg.LinkAddresses = []network.AddressConfig{
 		{
 			AddressAddress: netip.MustParsePrefix("1.2.3.4/24"),
@@ -77,6 +78,7 @@ func TestBondConfigUnmarshal(t *testing.T) {
 		BondResendIGMP:      pointer.To(uint32(1)),
 		BondPacketsPerSlave: pointer.To(uint32(1)),
 		BondADActorSysPrio:  pointer.To(uint16(65535)),
+		BondFailOverMAC:     pointer.To(nethelpers.FailOverMACFollow),
 		CommonLinkConfig: network.CommonLinkConfig{
 			LinkUp: pointer.To(true),
 			LinkAddresses: []network.AddressConfig{
